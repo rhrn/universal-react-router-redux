@@ -1,9 +1,12 @@
 'use strict'
 
+const ENV = process.env.NODE_ENV || 'development';
+
 require('babel-core/register')({
   only: '/src/'
 })
 
+const Path = require('path')
 const Boom = require('boom')
 const Hapi = require('hapi')
 
@@ -29,18 +32,50 @@ const syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore
 
 const Helmet = require('react-helmet')
 
-server.register(require('h2o2'), err => {})
+if (ENV !== 'production') {
 
-server.route({
-  method: 'GET',
-  path: '/static/{p*}',
-  handler: {
-    proxy: {
-      passThrough: true,
-      host: 'localhost',
-      port: 3011
+  server.register(require('h2o2'), err => {
+
+    server.route({
+      method: 'GET',
+      path: '/static/{p*}',
+      handler: {
+        proxy: {
+          passThrough: true,
+          host: 'localhost',
+          port: 3011
+        }
+      }
+    })
+
+  })
+
+}
+
+server.register(require('inert'), err => {
+
+  server.route({
+    method: 'GET',
+    path: '/favicon.ico',
+    handler: function (request, reply) {
+      reply.file('./static/favicon.ico')
     }
+  })
+
+  if (ENV === 'production') {
+
+    server.route({
+      method: 'GET',
+      path: '/static/{param*}',
+      handler: {
+        directory: {
+          path: Path.join(__dirname, 'static')
+        }
+      }
+    })
+
   }
+
 })
 
 server.route({

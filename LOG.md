@@ -62,3 +62,14 @@ npm install --save hapi boom h2o2
 
 node index.js
 node server.hot.js
+
+npm install --save inert
+
+add static/favicon.ico
+
+@ index.js
+@ webpack.config.js
+@ package.json
+@ .gitignore
+
+npm start 

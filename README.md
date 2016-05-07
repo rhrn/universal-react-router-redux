@@ -11,8 +11,10 @@ cd universal-react-router-redux
 
 npm install
 
-node index.js
+# start
+npm start
 
 # hot reload
+node index.js
 node server.hot.js
 ```
