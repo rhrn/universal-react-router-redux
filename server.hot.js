@@ -8,6 +8,7 @@ const port = 3011
 config.entry.unshift(`webpack-dev-server/client?http://localhost:${port}/`, 'webpack/hot/only-dev-server')
 
 new WebpackDevServer(webpack(config), {
+  proxy: { "*": "http://localhost:3012" },
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true

@@ -52,3 +52,13 @@ npm install --save react-helmet
 @ server.hot.js
 
 node server.hot.js
+
+npm install --save hapi boom h2o2
+
+@ index.js
+@ src/components/TopStories.js
+@ src/index.js
+@ server.hot.js
+
+node index.js
+node server.hot.js

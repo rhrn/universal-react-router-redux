@@ -9,8 +9,16 @@ import { fetchTopStoriesAsync } from '../actions/HackerNews'
 
 const TopStories = React.createClass({
 
+  statics: {
+    dispatchActions: (store, props) => {
+      return store.dispatch(fetchTopStoriesAsync())
+    }
+  },
+
   componentDidMount: function() {
-    this.props.dispatch(fetchTopStoriesAsync())
+    if (!this.props.stories.data.length) {
+      this.props.dispatch(fetchTopStoriesAsync())
+    }
   },
 
   render: function() {

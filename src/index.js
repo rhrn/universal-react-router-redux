@@ -10,7 +10,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { configureStore } from './store'
 import routes from './routes'
 
-const store = configureStore(browserHistory)
+const store = configureStore(browserHistory, __INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
