@@ -1,6 +1,6 @@
 # Universal web application with react, router, redux
 
-full server side rendering
+full server side rendering [demo](http://universalreact-rhrn.rhcloud.com/)
 
 ## Installation
 
